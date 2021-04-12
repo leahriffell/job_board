@@ -1,0 +1,28 @@
+language: ruby
+rbenv:
+- 3.0.1
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
+script:
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rspec
+addons:
+  postgresql: 9.6
+deploy:
+  api_key:
+    provider: heroku
+    secure: FUMjbJuStbF3B7vrgEtVWBxGyweyg3bap5+7Y+6GEoDETjTXCzc+OVHuilIMTQAynxrU2B3Dbmh63xHG0tgL2GUPcdr/KoMSivuYd2iscvzL62gfSqah+gv57E0V/3YztHR5IEupYj+Oh63K0apPz1MISdyinjCjGfLKvJ48X4Z4XoSw/lZhw6LKzDF2qPaP3KwKRHSd6YTwZ79AGrrihkUcyDCfeI+T7E++dTv9flRdsn6MccErYezPqE6FmKzE+9gLAnJmmpAQZcPcWCjyjvYnstYd//POy6zuuJosnTPVxKFHxo4m1SPz1/O9Th1btXi1GkzpBtXeQA5u1yoxLO2Pb64aSAziswTdBjyrU5i2DXaqxnoGBxgHcHmy4zvSvPxBXmlsEW4mV3nfwT45R4TXM6HD+2nbUUzhX05fZD+nv8UoGkJutcIKohit3YLcGCAsHwZB/73bNrbFKzQqUCsD6eFEO+Oz4M3i0Oac587LF70f/NuzfdudmIe0RQLIWCf1h24bSDPbk9vnavERyhbo7UqRg3L07mCgdUDk63k1MaZbfNRkW3q1UXwPk3V2XN7MhevdNf9Y9+mO6U9KJuTnyEDeWbnJVX99RXBRat5GXXPmM18YjiiB6FQT/6fTQxzP7rrJf/HmvCGoV0VEGHPHXpPyu9frNsrI8bUvqjc=
+  app: wfh-jobs
+  on:
+    repo: leahriffell/job_board
+    branch: main
+  skip_cleanup: 'true'
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+cache:
+- bundler
