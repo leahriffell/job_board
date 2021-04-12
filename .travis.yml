@@ -3,6 +3,8 @@ rbenv:
   - 3.0.1
 before_install:
   - gem install bundler
+services:
+  - postgresql
 script:
   - bundle exec rails db:{create,migrate} RAILS_ENV=test
   - bundle exec rspec
